@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font: normal 16px/1.5 Arial, sans-serif;
+}
+
+h1, p {
+    margin: 0;
+    padding: 0 0 .5em;
+}
+
+#container {
+    margin:0 auto;
+    max-width: 1000px;
+    max-height: 600px;
+   overflow:hidden;
+}
+
+
+
+/*
+ * Caption component
+ */
+.caption {
+    position: relative;
+    overflow: hidden;
+
+    /* Only the -webkit- prefix is required these days */
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+}
+
+.caption::before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    transition: background .35s ease-out;
+}
+
+.caption:hover::before {
+    background: rgba(0, 0, 0, .5);
+}
+
+.caption__media {
+    display: block;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.caption__overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    color: white;
+
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+
+    transition: -webkit-transform .35s ease-out;
+    transition:         transform .35s ease-out;
+}
+
+.caption:hover .caption__overlay {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+}
+
+.caption__overlay__title {
+    -webkit-transform: translateY( -webkit-calc(-100% - 10px) );
+            transform: translateY( calc(-100% - 10px) );
+
+    transition: -webkit-transform .35s ease-out;
+    transition:         transform .35s ease-out;
+}
+
+.caption:hover .caption__overlay__title {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+}
+
+article{max-width:1000px; max-height:600px;}
+    </style>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<div id="container">
+
+    <article class="caption">
+        <img class="caption__media" src="./img/Slide1.jpg" />
+        <div class="caption__overlay">
+            <h1 class="caption__overlay__title">Alaska</h1>
+            <p class="caption__overlay__content">
+                Alaska is a U.S. state situated in the northwest extremity of the North American continent. Bordering the state is Canada to the east, the Arctic Ocean to the north, and the Pacific Ocean to the west and south, with Russia (specifically, Siberia) further west across the Bering Strait.
+            </p>
+        </div>
+    </article>
+
+        <article class="caption">
+        <img class="caption__media" src="./img/Slide2.jpg" />
+        <div class="caption__overlay">
+            <h1 class="caption__overlay__title">Michigan</h1>
+            <p class="caption__overlay__content">
+               Some dummy text for testing
+            </p>
+        </div>
+    </article>
+
+
+    <article class="caption">
+        <img class="caption__media" src="./img/Slide3.jpg" />
+        <div class="caption__overlay">
+            <h1 class="caption__overlay__title">Michigan</h1>
+            <p class="caption__overlay__content">
+               Some dummy text for testing
+            </p>
+        </div>
+    </article>
+
+    </div>
+  
+
+</div>
+
+<script>
+    $("#container > article:gt(0)").hide();
+
+setInterval(function () {
+    $('#container > article:first')
+        .fadeOut(1000)
+        .next()
+        .fadeIn(1000)
+        .end()
+        .appendTo('#container');
+}, 3000);
+</script>
+</body>
+</html>
